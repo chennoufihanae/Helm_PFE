@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ .Values.namej }}
+  name: {{ .Values.namej }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.namej }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.namej }}
+    spec:
+      containers:
+      - name: {{ .Values.namej }}
+        image: jenkins/jenkins
+        ports:
+        - containerPort: {{ .Values.service.ports.port }}
